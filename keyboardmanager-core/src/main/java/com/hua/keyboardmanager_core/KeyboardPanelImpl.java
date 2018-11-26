@@ -20,7 +20,7 @@ class KeyboardPanelImpl implements IKeyboardPanel {
 
     @Override
     public void show(Activity activity, int themeId, final View visibleView) {
-        ensureActivityCallback(activity.getApplication());
+//        ensureActivityCallback(activity.getApplication());
 
         if (keyboardPopup == null || !keyboardPopup.isSameWindow(activity)) {
             keyboardPopup = new KeyboardPopup(activity, themeId);
@@ -43,12 +43,7 @@ class KeyboardPanelImpl implements IKeyboardPanel {
         return keyboardPopup != null && keyboardPopup.isShowing();
     }
 
-    private void ensureActivityCallback(Application application) {
-        if (!registered) {
-            application.registerActivityLifecycleCallbacks(new ActivityCallback());
-            registered = true;
-        }
-    }
+
 
     private class ActivityCallback implements Application.ActivityLifecycleCallbacks {
 

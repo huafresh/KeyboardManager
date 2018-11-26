@@ -32,8 +32,12 @@ public class ScrollAdjustHelper {
     }
 
     public void update(View targetView, View popupView) {
+        this.update(targetView, getViewTopOnScreen(popupView));
+    }
+
+    public void update(View targetView, int limitY) {
         this.targetView = targetView;
-        this.limitY = getViewTopOnScreen(popupView);
+        this.limitY = limitY;
         this.containerScrollY = 0;
     }
 

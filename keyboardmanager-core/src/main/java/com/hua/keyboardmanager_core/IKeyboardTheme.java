@@ -18,7 +18,9 @@ public interface IKeyboardTheme {
     @IdRes
     int themeId();
 
-    View onCreateKeyboardView(Context context, LayoutInflater inflater, ViewGroup container);
+    View onCreateKeyboardView(Context context,
+                              LayoutInflater inflater,
+                              ViewGroup container);
 
     void onBindInputTarget(@NonNull View target);
 

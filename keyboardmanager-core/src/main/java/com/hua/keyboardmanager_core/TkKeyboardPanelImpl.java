@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.android.thinkive.framework.keyboard.KeyboardManager;
 import com.android.thinkive.framework.keyboard.*;
+import com.android.thinkive.framework.util.ScreenUtil;
 
 /**
  * @author hua
@@ -15,13 +16,14 @@ import com.android.thinkive.framework.keyboard.*;
 
 class TkKeyboardPanelImpl implements IKeyboardPanel {
     private KeyboardManager tkKeyboardManager;
+    private ScrollAdjustHelper scrollAdjustHelper;
 
     TkKeyboardPanelImpl() {
 
     }
 
     @Override
-    public void show(Activity activity, int themeId, View visibleView) {
+    public void show(final Activity activity, int themeId, final View visibleView) {
         if (tkKeyboardManager != null) {
             tkKeyboardManager.dismiss();
         }
@@ -31,8 +33,25 @@ class TkKeyboardPanelImpl implements IKeyboardPanel {
             tkKeyboardManager = new KeyboardManager(activity, (EditText) focusView,
                     translateKeyboardType(themeId));
         } else {
-            tkKeyboardManager = new KeyboardManager(activity,translateKeyboardType(themeId));
+            tkKeyboardManager = new KeyboardManager(activity, translateKeyboardType(themeId));
         }
+
+        tkKeyboardManager.setKeyboardVisibleListener(new KeyboardManager.KeyboardVisibleListener() {
+            @Override
+            public void onShow(int keyboardHeight) {
+                if (scrollAdjustHelper == null) {
+                    scrollAdjustHelper = new ScrollAdjustHelper(visibleView,
+                            (int) (ScreenUtil.getScreenHeight(activity) - keyboardHeight));
+                } else {
+                    scrollAdjustHelper.update(visibleView, keyboardHeight);
+                }
+            }
+
+            @Override
+            public void onDismiss(int i) {
+
+            }
+        });
 
         tkKeyboardManager.show();
     }
@@ -41,6 +60,9 @@ class TkKeyboardPanelImpl implements IKeyboardPanel {
     public void dismiss() {
         if (tkKeyboardManager != null) {
             tkKeyboardManager.dismiss();
+        }
+        if (scrollAdjustHelper != null) {
+            scrollAdjustHelper.reset();
         }
     }
 
