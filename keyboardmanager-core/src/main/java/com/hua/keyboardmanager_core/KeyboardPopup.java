@@ -35,10 +35,10 @@ class KeyboardPopup extends PopupWindow {
         this.attachWindow = activity.getComponentName();
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         setBackgroundDrawable(new ColorDrawable(Color.BLUE));
-        setThemeId(themeId);
+        updateThemeId(themeId);
     }
 
-    void setThemeId(int themeId) {
+    void updateThemeId(int themeId) {
         if (this.themeId != themeId) {
             if (isShowing()) {
                 dismiss();

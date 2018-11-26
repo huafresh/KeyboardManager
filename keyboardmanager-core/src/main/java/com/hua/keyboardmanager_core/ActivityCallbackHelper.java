@@ -3,10 +3,12 @@ package com.hua.keyboardmanager_core;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.support.v4.util.ArraySet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author hua
@@ -16,7 +18,7 @@ import java.util.List;
 class ActivityCallbackHelper implements Application.ActivityLifecycleCallbacks {
 
     private static boolean registered = false;
-    private static HashMap<Activity, List<LifecycleListener>> destroyListeners;
+    private static HashMap<Activity, Set<LifecycleListener>> destroyListeners;
 
     private static void ensureRegisterActivityCallback(Application application) {
         if (!registered) {
@@ -33,10 +35,10 @@ class ActivityCallbackHelper implements Application.ActivityLifecycleCallbacks {
         }
 
         if (destroyListeners.containsKey(activity)) {
-            List<LifecycleListener> listeners = destroyListeners.get(activity);
+            Set<LifecycleListener> listeners = destroyListeners.get(activity);
             listeners.add(listener);
         } else {
-            List<LifecycleListener> listeners = new ArrayList<>();
+            Set<LifecycleListener> listeners = new ArraySet<>();
             listeners.add(listener);
             destroyListeners.put(activity, listeners);
         }
@@ -74,7 +76,7 @@ class ActivityCallbackHelper implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        List<LifecycleListener> listeners =  destroyListeners.remove(activity);
+        Set<LifecycleListener> listeners =  destroyListeners.remove(activity);
         if (listeners != null) {
             for (LifecycleListener listener : listeners) {
                 listener.onLifecycle(activity);

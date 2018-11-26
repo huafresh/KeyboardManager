@@ -24,36 +24,7 @@ class TkKeyboardPanelImpl implements IKeyboardPanel {
 
     @Override
     public void show(final Activity activity, int themeId, final View visibleView) {
-        if (tkKeyboardManager != null) {
-            tkKeyboardManager.dismiss();
-        }
 
-        View focusView = activity.getWindow().getCurrentFocus();
-        if (focusView instanceof EditText) {
-            tkKeyboardManager = new KeyboardManager(activity, (EditText) focusView,
-                    translateKeyboardType(themeId));
-        } else {
-            tkKeyboardManager = new KeyboardManager(activity, translateKeyboardType(themeId));
-        }
-
-        tkKeyboardManager.setKeyboardVisibleListener(new KeyboardManager.KeyboardVisibleListener() {
-            @Override
-            public void onShow(int keyboardHeight) {
-                if (scrollAdjustHelper == null) {
-                    scrollAdjustHelper = new ScrollAdjustHelper(visibleView,
-                            (int) (ScreenUtil.getScreenHeight(activity) - keyboardHeight));
-                } else {
-                    scrollAdjustHelper.update(visibleView, keyboardHeight);
-                }
-            }
-
-            @Override
-            public void onDismiss(int i) {
-
-            }
-        });
-
-        tkKeyboardManager.show();
     }
 
     @Override

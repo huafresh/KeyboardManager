@@ -10,8 +10,7 @@ import android.view.View;
  * @version 1.0
  * @date 2018/11/24
  */
-class KeyboardPanelImpl implements IKeyboardPanel {
-    private static boolean registered = false;
+class KeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.LifecycleListener {
     private KeyboardPopup keyboardPopup;
 
     KeyboardPanelImpl() {
@@ -20,15 +19,15 @@ class KeyboardPanelImpl implements IKeyboardPanel {
 
     @Override
     public void show(Activity activity, int themeId, final View visibleView) {
-//        ensureActivityCallback(activity.getApplication());
-
         if (keyboardPopup == null || !keyboardPopup.isSameWindow(activity)) {
             keyboardPopup = new KeyboardPopup(activity, themeId);
         } else {
-            keyboardPopup.setThemeId(themeId);
+            keyboardPopup.updateThemeId(themeId);
         }
 
         keyboardPopup.show(visibleView);
+
+        ActivityCallbackHelper.doOnActivityDestroyed(activity, this);
     }
 
     @Override
@@ -43,50 +42,13 @@ class KeyboardPanelImpl implements IKeyboardPanel {
         return keyboardPopup != null && keyboardPopup.isShowing();
     }
 
-
-
-    private class ActivityCallback implements Application.ActivityLifecycleCallbacks {
-
-        @Override
-        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
-        }
-
-        @Override
-        public void onActivityStarted(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityResumed(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityPaused(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivityStopped(Activity activity) {
-
-        }
-
-        @Override
-        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
-        }
-
-        @Override
-        public void onActivityDestroyed(Activity activity) {
-            if (keyboardPopup != null && keyboardPopup.isSameWindow(activity)) {
-                if (keyboardPopup.isShowing()) {
-                    keyboardPopup.dismiss();
-                }
-                keyboardPopup = null;
+    @Override
+    public void onLifecycle(Activity activity) {
+        if (keyboardPopup != null && keyboardPopup.isSameWindow(activity)) {
+            if (keyboardPopup.isShowing()) {
+                keyboardPopup.dismiss();
             }
+            keyboardPopup = null;
         }
     }
-
-
 }
