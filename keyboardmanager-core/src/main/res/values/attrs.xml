@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="keyboard_theme_simple" type="id"/>
+    <declare-styleable name="KeyboardEditText">
+        <attr name="keyboard_type" format="integer"/>
+        <attr name="keyboard_theme_id" format="integer"/>
+        <attr name="keyboard_visible_view" format="integer"/>
+    </declare-styleable>
+</resources>
