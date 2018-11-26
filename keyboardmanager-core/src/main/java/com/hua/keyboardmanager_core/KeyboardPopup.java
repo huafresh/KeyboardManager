@@ -84,7 +84,7 @@ class KeyboardPopup extends PopupWindow {
         if (scrollHelper == null) {
             scrollHelper = new ScrollAdjustHelper(visibleView, popupView);
         } else {
-            scrollHelper.updateView(visibleView, popupView);
+            scrollHelper.update(visibleView, popupView);
         }
         scrollHelper.adjust();
     }

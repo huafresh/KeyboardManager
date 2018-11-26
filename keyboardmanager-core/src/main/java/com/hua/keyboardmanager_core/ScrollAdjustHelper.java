@@ -15,32 +15,42 @@ public class ScrollAdjustHelper {
 
     public static int SCROLL_DURATION = 150;
     private View targetView;
-    private View popupView;
     private View containerView;
     private ValueAnimator scrollAnimator;
     private int containerScrollY;
     private int tempScrollBy;
+    private int limitY = -1;
 
     public ScrollAdjustHelper(View targetView, View popupView) {
+        this.scrollContainerWithOffset(targetView, getViewTopOnScreen(popupView));
+    }
+
+    public ScrollAdjustHelper(View targetView, int limitY) {
         this.targetView = targetView;
-        this.popupView = popupView;
+        this.limitY = limitY;
         this.containerScrollY = 0;
     }
 
-    public void updateView(View targetView, View popupView) {
+    public void update(View targetView, View popupView) {
         this.targetView = targetView;
-        this.popupView = popupView;
+        this.limitY = getViewTopOnScreen(popupView);
         this.containerScrollY = 0;
     }
 
     public void adjust() {
-        int offset = getScrollOffset(targetView, popupView);
+        int offset = getScrollOffset(targetView, limitY);
         if (containerView == null) {
             containerView = findActivityContentViewGroup(targetView);
         }
         if (containerView != null) {
             scrollContainerWithOffset(containerView, offset - containerScrollY);
         }
+    }
+
+    public static int getViewTopOnScreen(View view) {
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        return location[1];
     }
 
     private void scrollContainerWithOffset(final View containerView, final int offset) {
@@ -91,13 +101,11 @@ public class ScrollAdjustHelper {
         return null;
     }
 
-    private static int getScrollOffset(View targetView, View popupView) {
+    private static int getScrollOffset(View targetView, int limitY) {
         int[] tempLocation = new int[2];
         targetView.getLocationOnScreen(tempLocation);
         int focusBottom = tempLocation[1] + targetView.getHeight();
-        popupView.getLocationOnScreen(tempLocation);
-        int popupTop = tempLocation[1];
-        int offset = focusBottom - popupTop;
+        int offset = focusBottom - limitY;
         return offset > 0 ? offset : 0;
     }
 
