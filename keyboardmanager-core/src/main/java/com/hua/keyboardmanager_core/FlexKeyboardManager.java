@@ -69,12 +69,21 @@ public final class FlexKeyboardManager {
         this.showCustomSoftInput(activity, themeId, activity.getWindow().getCurrentFocus());
     }
 
-    public void showCustomSoftInput(Activity activity,
-                                    @IdRes int themeId,
-                                    View visibleView) {
+    public void showCustomSoftInput(final Activity activity,
+                                    @IdRes final int themeId,
+                                    final View visibleView) {
+        if (isSysKeyboardShowing(activity)) {
+            dismissSystemSoftInput(activity);
+        }
         if (tkKeyboardPanel.support(themeId)) {
+            if (keyboardPanel.isShowing()) {
+                keyboardPanel.dismiss();
+            }
             tkKeyboardPanel.show(activity, themeId, visibleView);
         } else if (keyboardPanel.support(themeId)) {
+            if (tkKeyboardPanel.isShowing()) {
+                tkKeyboardPanel.dismiss();
+            }
             keyboardPanel.show(activity, themeId, visibleView);
         }
     }

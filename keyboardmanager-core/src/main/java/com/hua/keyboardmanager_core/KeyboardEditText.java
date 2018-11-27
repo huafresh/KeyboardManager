@@ -88,15 +88,17 @@ public class KeyboardEditText extends AppCompatEditText
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         //焦点变化快于系统键盘的弹出
-        if (!systemSoftEnable &&
-                hasFocus() &&
-                !FlexKeyboardManager.get().isCustomShowing()) {
-            Activity activity = (Activity) getContext();
-            View visibleView = activity.getWindow().getDecorView().findViewById(visibleViewId);
-            if (visibleView == null) {
-                visibleView = this;
+        if (hasFocus) {
+            if (!systemSoftEnable) {
+                Activity activity = (Activity) getContext();
+                View visibleView = activity.getWindow().getDecorView().findViewById(visibleViewId);
+                if (visibleView == null) {
+                    visibleView = this;
+                }
+                FlexKeyboardManager.get().showCustomSoftInput(activity, keyboardThemeId, visibleView);
+            } else {
+                FlexKeyboardManager.get().dismissCustomSoftInput();
             }
-            FlexKeyboardManager.get().showCustomSoftInput(activity, keyboardThemeId, visibleView);
         }
     }
 
@@ -128,8 +130,7 @@ public class KeyboardEditText extends AppCompatEditText
         //点击事件慢于系统键盘的弹出
         //如果点击使View获取了焦点，则此回调不会走。
         if (!systemSoftEnable &&
-                hasFocus() &&
-                !FlexKeyboardManager.get().isCustomShowing()) {
+                hasFocus()) {
             Activity activity = (Activity) getContext();
             View visibleView = activity.getWindow().getDecorView().findViewById(visibleViewId);
             if (visibleView == null) {
