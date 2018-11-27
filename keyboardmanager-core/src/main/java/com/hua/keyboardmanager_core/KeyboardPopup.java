@@ -25,8 +25,8 @@ class KeyboardPopup extends PopupWindow {
     private SparseArray<View> keyboardViews = new SparseArray<>();
     private int themeId = -1;
     private View keyboardView;
-    private ScrollAdjustHelper scrollHelper;
     private ComponentName attachWindow;
+    private View visibleView;
 
     KeyboardPopup(Context context, int themeId) {
         super(context);
@@ -64,6 +64,7 @@ class KeyboardPopup extends PopupWindow {
     }
 
     void show(final View visibleView) {
+        this.visibleView = visibleView;
         showAtLocation(activity.getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
         IKeyboardTheme keyboardTheme = FlexKeyboardManager.keyboardThemes.get(themeId);
         View focus = activity.getWindow().getCurrentFocus();
@@ -79,18 +80,13 @@ class KeyboardPopup extends PopupWindow {
     }
 
     private void scrollEnsureViewVisible(View visibleView, View popupView) {
-        if (scrollHelper == null) {
-            scrollHelper = new ScrollAdjustHelper(visibleView, popupView);
-        } else {
-            scrollHelper.update(visibleView, popupView);
-        }
-        scrollHelper.adjust();
+        ScrollAdjustHelper.adjust(visibleView, ScrollAdjustHelper.getViewTopOnScreen(popupView));
     }
 
     @Override
     public void dismiss() {
         super.dismiss();
-        scrollHelper.reset();
+        ScrollAdjustHelper.reset(visibleView);
     }
 
     boolean isSameWindow(Activity activity) {

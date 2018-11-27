@@ -60,17 +60,12 @@ class TkKeyboardPopup extends KeyboardManager {
     public void show() {
         super.show();
         int limitY = (int) (ScreenUtil.getScreenHeight(activity) - keyboardHeight);
-        if (scrollAdjustHelper == null) {
-            scrollAdjustHelper = new ScrollAdjustHelper(visibleView, limitY);
-        } else {
-            scrollAdjustHelper.update(visibleView, limitY);
-        }
-        scrollAdjustHelper.adjust();
+        ScrollAdjustHelper.adjust(visibleView, limitY);
     }
 
     @Override
     public void dismiss() {
         super.dismiss();
-        scrollAdjustHelper.reset();
+        ScrollAdjustHelper.reset(visibleView);
     }
 }
