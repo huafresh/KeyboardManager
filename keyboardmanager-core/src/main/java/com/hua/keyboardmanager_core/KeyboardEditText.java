@@ -43,20 +43,6 @@ public class KeyboardEditText extends AppCompatEditText
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.KeyboardEditText);
-
-//        int indexCount = ta.getIndexCount();
-//        TypedValue value = new TypedValue();
-//        for (int i = 0; i < indexCount; i++) {
-//            int index = ta.getIndex(i);
-//            if (R.styleable.KeyboardEditText_keyboard_type == index) {
-//                this.keyboardType = ta.getInt(index, KEYBOARD_TYPE_CUSTOM);
-//            } else if (R.styleable.KeyboardEditText_keyboard_type == index) {
-//                ta.getValue(index, value);
-//            } else if (R.styleable.KeyboardEditText_keyboard_type == index) {
-//                ta.getValue(index, value);
-//            }
-//        }
-
         this.keyboardType = ta.getInt(R.styleable.KeyboardEditText_keyboard_type, KEYBOARD_TYPE_CUSTOM);
         this.keyboardThemeId = ta.getResourceId(
                 R.styleable.KeyboardEditText_keyboard_theme_id, R.id.tk_keyboard_theme_english);
