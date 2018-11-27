@@ -74,13 +74,10 @@ class KeyboardPopup extends PopupWindow {
         keyboardView.post(new Runnable() {
             @Override
             public void run() {
-                scrollEnsureViewVisible(visibleView, keyboardView);
+                ScrollAdjustHelper.adjust(visibleView,
+                        ScrollAdjustHelper.getViewTopOnScreen(keyboardView));
             }
         });
-    }
-
-    private void scrollEnsureViewVisible(View visibleView, View popupView) {
-        ScrollAdjustHelper.adjust(visibleView, ScrollAdjustHelper.getViewTopOnScreen(popupView));
     }
 
     @Override
