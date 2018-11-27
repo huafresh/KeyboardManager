@@ -19,6 +19,7 @@ class TkKeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.Life
 
     static {
         keyboardTypes.put(R.id.tk_keyboard_theme_english, KeyboardManager.KEYBOARD_TYPE_ENGLISH);
+        keyboardTypes.put(R.id.tk_keyboard_theme_ios_digital, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL);
         keyboardTypes.put(R.id.tk_keyboard_theme_ios_digital_random, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL_RANDOM);
     }
 

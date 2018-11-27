@@ -18,8 +18,6 @@ import com.android.thinkive.framework.util.ScreenUtil;
 
 class TkKeyboardPopup extends KeyboardManager {
     private Activity activity;
-    private ScrollAdjustHelper scrollAdjustHelper;
-    private ComponentName attachWindow;
     private View visibleView;
     private int keyboardHeight;
 

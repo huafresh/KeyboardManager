@@ -3,8 +3,6 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 27
 
-
-
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
@@ -25,6 +23,12 @@ android {
     repositories {
         flatDir {
             dirs 'libs'
+        }
+    }
+
+    android.libraryVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "FlexKeyboardManager-${defaultConfig.versionName}.aar"
         }
     }
 

@@ -2,6 +2,7 @@
 <resources>
     <item name="keyboard_theme_simple" type="id"/>
     <item name="tk_keyboard_theme_english" type="id"/>
+    <item name="tk_keyboard_theme_ios_digital" type="id"/>
     <item name="tk_keyboard_theme_ios_digital_random" type="id"/>
 
     <declare-styleable name="KeyboardEditText">
