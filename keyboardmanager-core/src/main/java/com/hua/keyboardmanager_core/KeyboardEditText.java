@@ -66,25 +66,28 @@ public class KeyboardEditText extends AppCompatEditText
 
     @Override
     public void setOnClickListener(@Nullable OnClickListener l) {
-        super.setOnClickListener(l);
         if (!(l instanceof KeyboardEditText)) {
             this.clickListener = l;
+        } else {
+            super.setOnClickListener(l);
         }
     }
 
     @Override
     public void setOnFocusChangeListener(OnFocusChangeListener l) {
-        super.setOnFocusChangeListener(l);
         if (!(l instanceof KeyboardEditText)) {
             this.focusChangeListener = l;
+        } else {
+            super.setOnFocusChangeListener(l);
         }
     }
 
     @Override
     public void setOnKeyListener(OnKeyListener l) {
-        super.setOnKeyListener(l);
         if (!(l instanceof KeyboardEditText)) {
             this.keyListener = l;
+        } else {
+            super.setOnKeyListener(l);
         }
     }
 

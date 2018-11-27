@@ -14,6 +14,7 @@
         app:keyboard_type="keyboard_type_system"/>
 
     <com.hua.keyboardmanager_core.KeyboardEditText
+        android:id="@+id/edt_2"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:hint="自绘键盘 - 框架"
