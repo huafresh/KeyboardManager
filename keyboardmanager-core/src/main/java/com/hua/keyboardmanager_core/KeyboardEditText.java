@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +23,7 @@ public class KeyboardEditText extends AppCompatEditText
         implements View.OnFocusChangeListener, View.OnClickListener {
     public static final int KEYBOARD_TYPE_SYSTEM = 0;
     public static final int KEYBOARD_TYPE_CUSTOM = 1;
-    private int keyboardType;
+    private int keyboardType = KEYBOARD_TYPE_CUSTOM;
     private int keyboardThemeId;
     private int visibleViewId;
     private boolean systemSoftEnable = true;
@@ -41,10 +42,25 @@ public class KeyboardEditText extends AppCompatEditText
     }
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FlexKeyboardEditText);
-        this.keyboardType = ta.getInt(R.styleable.FlexKeyboardEditText_keyboard_type, KEYBOARD_TYPE_CUSTOM);
-        this.keyboardThemeId = ta.getInt(R.styleable.FlexKeyboardEditText_keyboard_theme_id, R.id.keyboard_theme_simple);
-        this.visibleViewId = ta.getInt(R.styleable.FlexKeyboardEditText_keyboard_visible_view, -1);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.KeyboardEditText);
+
+//        int indexCount = ta.getIndexCount();
+//        TypedValue value = new TypedValue();
+//        for (int i = 0; i < indexCount; i++) {
+//            int index = ta.getIndex(i);
+//            if (R.styleable.KeyboardEditText_keyboard_type == index) {
+//                this.keyboardType = ta.getInt(index, KEYBOARD_TYPE_CUSTOM);
+//            } else if (R.styleable.KeyboardEditText_keyboard_type == index) {
+//                ta.getValue(index, value);
+//            } else if (R.styleable.KeyboardEditText_keyboard_type == index) {
+//                ta.getValue(index, value);
+//            }
+//        }
+
+        this.keyboardType = ta.getInt(R.styleable.KeyboardEditText_keyboard_type, KEYBOARD_TYPE_CUSTOM);
+        this.keyboardThemeId = ta.getResourceId(
+                R.styleable.KeyboardEditText_keyboard_theme_id, R.id.tk_keyboard_theme_english);
+        this.visibleViewId = ta.getResourceId(R.styleable.KeyboardEditText_keyboard_visible_view, 0);
         ta.recycle();
 
         setFocusableInTouchMode(true);
@@ -54,8 +70,8 @@ public class KeyboardEditText extends AppCompatEditText
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK &&
-                        KeyboardManager.get().isCustomShowing()) {
-                    KeyboardManager.get().dismissCustomSoftInput();
+                        FlexKeyboardManager.get().isCustomShowing()) {
+                    FlexKeyboardManager.get().dismissCustomSoftInput();
                     return true;
                 }
                 return false;
@@ -74,13 +90,13 @@ public class KeyboardEditText extends AppCompatEditText
         //焦点变化快于系统键盘的弹出
         if (!systemSoftEnable &&
                 hasFocus() &&
-                !KeyboardManager.get().isCustomShowing()) {
+                !FlexKeyboardManager.get().isCustomShowing()) {
             Activity activity = (Activity) getContext();
             View visibleView = activity.getWindow().getDecorView().findViewById(visibleViewId);
             if (visibleView == null) {
                 visibleView = this;
             }
-            KeyboardManager.get().showCustomSoftInput(activity, keyboardThemeId, visibleView);
+            FlexKeyboardManager.get().showCustomSoftInput(activity, keyboardThemeId, visibleView);
         }
     }
 
@@ -113,13 +129,13 @@ public class KeyboardEditText extends AppCompatEditText
         //如果点击使View获取了焦点，则此回调不会走。
         if (!systemSoftEnable &&
                 hasFocus() &&
-                !KeyboardManager.get().isCustomShowing()) {
+                !FlexKeyboardManager.get().isCustomShowing()) {
             Activity activity = (Activity) getContext();
             View visibleView = activity.getWindow().getDecorView().findViewById(visibleViewId);
             if (visibleView == null) {
                 visibleView = this;
             }
-            KeyboardManager.get().showCustomSoftInput(activity, keyboardThemeId, visibleView);
+            FlexKeyboardManager.get().showCustomSoftInput(activity, keyboardThemeId, visibleView);
         }
     }
 }

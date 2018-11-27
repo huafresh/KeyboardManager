@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="keyboard_theme_simple" type="id"/>
-
     <item name="tk_keyboard_theme_english" type="id"/>
+    <item name="tk_keyboard_theme_ios_digital_random" type="id"/>
 
     <declare-styleable name="KeyboardEditText">
-        <attr name="keyboard_type" format="integer"/>
-        <attr name="keyboard_theme_id" format="integer"/>
-        <attr name="keyboard_visible_view" format="integer"/>
+        <attr name="keyboard_type" format="enum">
+            <enum name="keyboard_type_system" value="0"/>
+            <enum name="keyboard_type_custom" value="1"/>
+        </attr>
+        <attr name="keyboard_theme_id" format="reference"/>
+        <attr name="keyboard_visible_view" format="reference"/>
     </declare-styleable>
 </resources>

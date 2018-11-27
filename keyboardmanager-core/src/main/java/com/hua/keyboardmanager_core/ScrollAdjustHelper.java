@@ -22,7 +22,7 @@ public class ScrollAdjustHelper {
     private int limitY = -1;
 
     public ScrollAdjustHelper(View targetView, View popupView) {
-        this.scrollContainerWithOffset(targetView, getViewTopOnScreen(popupView));
+        this(targetView, getViewTopOnScreen(popupView));
     }
 
     public ScrollAdjustHelper(View targetView, int limitY) {

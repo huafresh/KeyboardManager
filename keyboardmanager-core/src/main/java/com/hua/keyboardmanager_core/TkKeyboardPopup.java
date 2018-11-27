@@ -67,4 +67,10 @@ class TkKeyboardPopup extends KeyboardManager {
         }
         scrollAdjustHelper.adjust();
     }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        scrollAdjustHelper.reset();
+    }
 }

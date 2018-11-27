@@ -1,18 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.hua.keyboardmanager.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.hua.keyboardmanager_core.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="使用系统键盘"
+        app:keyboard_type="keyboard_type_system"/>
 
-</android.support.constraint.ConstraintLayout>
+    <com.hua.keyboardmanager_core.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="自绘键盘 - 框架"
+        />
+
+    <com.hua.keyboardmanager_core.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="自绘键盘 - 自定义"
+        app:keyboard_theme_id="@id/keyboard_theme_simple"
+        />
+
+    <com.hua.keyboardmanager_core.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="自绘键盘 - 框架 - buton可见"
+        app:keyboard_visible_view="@+id/btn_login"
+        />
+
+    <com.hua.keyboardmanager_core.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="自绘键盘 - 自定义 - buton可见"
+        app:keyboard_theme_id="@id/keyboard_theme_simple"
+        app:keyboard_visible_view="@+id/btn_login"
+        />
+
+    <com.hua.keyboardmanager_core.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="自绘键盘 - 框架 - ios随机数字"
+        app:keyboard_theme_id="@id/tk_keyboard_theme_ios_digital_random"
+        />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="登录"/>
+</LinearLayout>

@@ -1,8 +1,6 @@
 package com.hua.keyboardmanager_core;
 
 import android.app.Activity;
-import android.app.Application;
-import android.os.Bundle;
 import android.view.View;
 
 /**
@@ -19,8 +17,7 @@ class KeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.Lifecy
 
     @Override
     public boolean support(int themeId) {
-        //自定义类型优先级低，因此只要进来就都支持
-        return true;
+        return FlexKeyboardManager.keyboardThemes.get(themeId) != null;
     }
 
     @Override

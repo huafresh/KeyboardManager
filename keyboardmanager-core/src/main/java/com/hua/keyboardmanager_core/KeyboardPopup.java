@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,12 +48,11 @@ class KeyboardPopup extends PopupWindow {
         }
     }
 
-    private @Nullable
-    View getKeyboardViewByThemeId(Activity activity, @IdRes int themeId) {
+    private View getKeyboardViewByThemeId(Activity activity, @IdRes int themeId) {
         View keyboardView = keyboardViews.get(themeId);
         if (keyboardView == null) {
             FrameLayout container = new FrameLayout(activity);
-            IKeyboardTheme iKeyboardTheme = KeyboardManager.keyboardThemes.get(themeId);
+            IKeyboardTheme iKeyboardTheme = FlexKeyboardManager.keyboardThemes.get(themeId);
             if (iKeyboardTheme != null) {
                 View view = iKeyboardTheme.onCreateKeyboardView(activity,
                         LayoutInflater.from(activity), container);
@@ -67,7 +65,7 @@ class KeyboardPopup extends PopupWindow {
 
     void show(final View visibleView) {
         showAtLocation(activity.getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
-        IKeyboardTheme keyboardTheme = KeyboardManager.keyboardThemes.get(themeId);
+        IKeyboardTheme keyboardTheme = FlexKeyboardManager.keyboardThemes.get(themeId);
         View focus = activity.getWindow().getCurrentFocus();
         if (keyboardTheme != null && focus != null) {
             keyboardTheme.onBindInputTarget(focus);

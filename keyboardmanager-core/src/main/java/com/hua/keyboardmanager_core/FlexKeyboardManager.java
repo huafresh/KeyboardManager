@@ -14,7 +14,7 @@ import android.view.inputmethod.InputMethodManager;
  * @date 2018/11/23 14:03
  */
 
-public final class KeyboardManager {
+public final class FlexKeyboardManager {
 
     private IKeyboardPanel keyboardPanel;
     private IKeyboardPanel tkKeyboardPanel;
@@ -25,17 +25,17 @@ public final class KeyboardManager {
         keyboardThemes.put(R.id.keyboard_theme_simple, new SimpleKeyboardTheme());
     }
 
-    private KeyboardManager() {
+    private FlexKeyboardManager() {
         keyboardPanel = new KeyboardPanelImpl();
         tkKeyboardPanel = new TkKeyboardPanelImpl();
     }
 
-    public static KeyboardManager get() {
+    public static FlexKeyboardManager get() {
         return HOLDER.S_INSTANCE;
     }
 
     private static final class HOLDER {
-        private static final KeyboardManager S_INSTANCE = new KeyboardManager();
+        private static final FlexKeyboardManager S_INSTANCE = new FlexKeyboardManager();
     }
 
     public static void showSystemSoftInput(Activity activity) {
