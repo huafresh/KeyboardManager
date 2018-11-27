@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -20,13 +21,16 @@ import java.lang.reflect.Method;
  */
 
 public class KeyboardEditText extends AppCompatEditText
-        implements View.OnFocusChangeListener, View.OnClickListener {
+        implements View.OnFocusChangeListener, View.OnClickListener, View.OnKeyListener {
     public static final int KEYBOARD_TYPE_SYSTEM = 0;
     public static final int KEYBOARD_TYPE_CUSTOM = 1;
     private int keyboardType = KEYBOARD_TYPE_CUSTOM;
     private int keyboardThemeId;
     private int visibleViewId;
     private boolean systemSoftEnable = true;
+    private OnKeyListener keyListener;
+    private OnFocusChangeListener focusChangeListener;
+    private OnClickListener clickListener;
 
     public KeyboardEditText(Context context) {
         this(context, null);
@@ -49,25 +53,38 @@ public class KeyboardEditText extends AppCompatEditText
         this.visibleViewId = ta.getResourceId(R.styleable.KeyboardEditText_keyboard_visible_view, 0);
         ta.recycle();
 
-        setFocusableInTouchMode(true);
         setOnFocusChangeListener(this);
         setOnClickListener(this);
-        setOnKeyListener(new OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK &&
-                        FlexKeyboardManager.get().isCustomShowing()) {
-                    FlexKeyboardManager.get().dismissCustomSoftInput();
-                    return true;
-                }
-                return false;
-            }
-        });
+        setOnKeyListener(this);
 
         if (keyboardType == KEYBOARD_TYPE_CUSTOM && isActivityContext()) {
             setIsShowSystemSoftInputOnFocus(false);
         } else {
             setIsShowSystemSoftInputOnFocus(true);
+        }
+    }
+
+    @Override
+    public void setOnClickListener(@Nullable OnClickListener l) {
+        super.setOnClickListener(l);
+        if (!(l instanceof KeyboardEditText)) {
+            this.clickListener = l;
+        }
+    }
+
+    @Override
+    public void setOnFocusChangeListener(OnFocusChangeListener l) {
+        super.setOnFocusChangeListener(l);
+        if (!(l instanceof KeyboardEditText)) {
+            this.focusChangeListener = l;
+        }
+    }
+
+    @Override
+    public void setOnKeyListener(OnKeyListener l) {
+        super.setOnKeyListener(l);
+        if (!(l instanceof KeyboardEditText)) {
+            this.keyListener = l;
         }
     }
 
@@ -85,6 +102,10 @@ public class KeyboardEditText extends AppCompatEditText
             } else {
                 FlexKeyboardManager.get().dismissCustomSoftInput();
             }
+        }
+
+        if (this.focusChangeListener != null) {
+            focusChangeListener.onFocusChange(v, hasFocus);
         }
     }
 
@@ -124,5 +145,19 @@ public class KeyboardEditText extends AppCompatEditText
             }
             FlexKeyboardManager.get().showCustomSoftInput(activity, keyboardThemeId, visibleView);
         }
+
+        if (this.clickListener != null) {
+            clickListener.onClick(v);
+        }
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK &&
+                FlexKeyboardManager.get().isCustomShowing()) {
+            FlexKeyboardManager.get().dismissCustomSoftInput();
+            return true;
+        }
+        return keyListener != null && keyListener.onKey(v, keyCode, event);
     }
 }
