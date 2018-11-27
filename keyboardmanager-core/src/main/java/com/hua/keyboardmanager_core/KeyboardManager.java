@@ -17,7 +17,9 @@ import android.view.inputmethod.InputMethodManager;
 public final class KeyboardManager {
 
     private IKeyboardPanel keyboardPanel;
+    private IKeyboardPanel tkKeyboardPanel;
     static SparseArray<IKeyboardTheme> keyboardThemes = new SparseArray<>();
+    private static final int DEFAULT_THEME_ID = R.id.tk_keyboard_theme_english;
 
     static {
         keyboardThemes.put(R.id.keyboard_theme_simple, new SimpleKeyboardTheme());
@@ -25,6 +27,7 @@ public final class KeyboardManager {
 
     private KeyboardManager() {
         keyboardPanel = new KeyboardPanelImpl();
+        tkKeyboardPanel = new TkKeyboardPanelImpl();
     }
 
     public static KeyboardManager get() {
@@ -57,15 +60,27 @@ public final class KeyboardManager {
         }
     }
 
-    public void showCustomSoftInput(Activity activity, @IdRes int themeId) {
+    public void showCustomSoftInput(Activity activity) {
+        this.showCustomSoftInput(activity, DEFAULT_THEME_ID, activity.getWindow().getCurrentFocus());
+    }
+
+    public void showCustomSoftInput(Activity activity,
+                                    @IdRes int themeId) {
         this.showCustomSoftInput(activity, themeId, activity.getWindow().getCurrentFocus());
     }
 
-    public void showCustomSoftInput(Activity activity, @IdRes int themeId, View visibleView) {
-        keyboardPanel.show(activity, themeId, visibleView);
+    public void showCustomSoftInput(Activity activity,
+                                    @IdRes int themeId,
+                                    View visibleView) {
+        if (tkKeyboardPanel.support(themeId)) {
+            tkKeyboardPanel.show(activity, themeId, visibleView);
+        } else if (keyboardPanel.support(themeId)) {
+            keyboardPanel.show(activity, themeId, visibleView);
+        }
     }
 
     public void dismissCustomSoftInput() {
+        tkKeyboardPanel.dismiss();
         keyboardPanel.dismiss();
     }
 
@@ -77,7 +92,7 @@ public final class KeyboardManager {
     }
 
     public boolean isCustomShowing() {
-        return keyboardPanel.isShowing();
+        return tkKeyboardPanel.isShowing() || keyboardPanel.isShowing();
     }
 
     public static void registerKeyboardTheme(IKeyboardTheme theme) {

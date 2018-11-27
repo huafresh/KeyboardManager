@@ -1,12 +1,10 @@
 package com.hua.keyboardmanager_core;
 
 import android.app.Activity;
+import android.util.SparseArray;
 import android.view.View;
-import android.widget.EditText;
 
 import com.android.thinkive.framework.keyboard.KeyboardManager;
-import com.android.thinkive.framework.keyboard.*;
-import com.android.thinkive.framework.util.ScreenUtil;
 
 /**
  * @author hua
@@ -14,39 +12,59 @@ import com.android.thinkive.framework.util.ScreenUtil;
  * @date 2018/11/26 18:32
  */
 
-class TkKeyboardPanelImpl implements IKeyboardPanel {
-    private KeyboardManager tkKeyboardManager;
-    private ScrollAdjustHelper scrollAdjustHelper;
+class TkKeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.LifecycleListener {
+    private TkKeyboardPopup tkKeyboardPopup;
+
+    private static SparseArray<Short> keyboardTypes = new SparseArray<>();
+
+    static {
+        keyboardTypes.put(R.id.tk_keyboard_theme_english, KeyboardManager.KEYBOARD_TYPE_ENGLISH);
+    }
 
     TkKeyboardPanelImpl() {
 
     }
 
     @Override
-    public void show(final Activity activity, int themeId, final View visibleView) {
+    public boolean support(int themeId) {
+        return keyboardTypes.get(themeId, (short) 0) != 0;
+    }
 
+    @Override
+    public void show(final Activity activity, int themeId, final View visibleView) {
+        tkKeyboardPopup = TkKeyboardPopup.create(activity,
+                translateKeyboardType(themeId), visibleView);
+        if (tkKeyboardPopup != null) {
+            tkKeyboardPopup.show();
+            ActivityCallbackHelper.doOnActivityDestroyed(activity, this);
+        }
     }
 
     @Override
     public void dismiss() {
-        if (tkKeyboardManager != null) {
-            tkKeyboardManager.dismiss();
-        }
-        if (scrollAdjustHelper != null) {
-            scrollAdjustHelper.reset();
+        if (tkKeyboardPopup != null) {
+            tkKeyboardPopup.dismiss();
         }
     }
 
     @Override
     public boolean isShowing() {
-        return tkKeyboardManager.isShowing();
+        return tkKeyboardPopup != null && tkKeyboardPopup.isShowing();
     }
 
     private static short translateKeyboardType(int themeId) {
         if (R.id.tk_keyboard_theme_english == themeId) {
-            return com.android.thinkive.framework.keyboard.KeyboardManager.KEYBOARD_TYPE_ENGLISH;
+            return KeyboardManager.KEYBOARD_TYPE_ENGLISH;
         }
+        return KeyboardManager.KEYBOARD_TYPE_ENGLISH;
+    }
 
-        return com.android.thinkive.framework.keyboard.KeyboardManager.KEYBOARD_TYPE_ENGLISH;
+    @Override
+    public void onLifecycle(Activity activity) {
+        if (tkKeyboardPopup != null &&
+                tkKeyboardPopup.isShowing()) {
+            tkKeyboardPopup.dismiss();
+        }
+        tkKeyboardPopup = null;
     }
 }

@@ -11,6 +11,8 @@ import android.view.View;
  */
 public interface IKeyboardPanel {
 
+    boolean support(@IdRes int themeId);
+
     /**
      * 弹出自绘键盘
      *

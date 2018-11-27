@@ -18,6 +18,12 @@ class KeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.Lifecy
     }
 
     @Override
+    public boolean support(int themeId) {
+        //自定义类型优先级低，因此只要进来就都支持
+        return true;
+    }
+
+    @Override
     public void show(Activity activity, int themeId, final View visibleView) {
         if (keyboardPopup == null || !keyboardPopup.isSameWindow(activity)) {
             keyboardPopup = new KeyboardPopup(activity, themeId);
