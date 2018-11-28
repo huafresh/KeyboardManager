@@ -13,7 +13,7 @@ import com.android.thinkive.framework.keyboard.KeyboardManager;
  */
 
 class TkKeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.LifecycleListener {
-    private TkKeyboardPopup tkKeyboardPopup;
+    private TkKeyboardPopup_new tkKeyboardPopup;
 
     TkKeyboardPanelImpl() {
 
@@ -26,12 +26,11 @@ class TkKeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.Life
 
     @Override
     public void show(final Activity activity, int themeId, final View visibleView) {
-        tkKeyboardPopup = TkKeyboardPopup.create(activity,
-                FlexKeyboardManager.themeIdTkKeyboardTypeMap.get(themeId), visibleView);
-        if (tkKeyboardPopup != null) {
-            tkKeyboardPopup.show();
+        if (tkKeyboardPopup == null) {
+            tkKeyboardPopup = new TkKeyboardPopup_new(activity);
             ActivityCallbackHelper.doOnActivityDestroyed(activity, this);
         }
+        tkKeyboardPopup.show(FlexKeyboardManager.themeIdTkKeyboardTypeMap.get(themeId), visibleView);
     }
 
     @Override
@@ -48,8 +47,7 @@ class TkKeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.Life
 
     @Override
     public void onLifecycle(Activity activity) {
-        if (tkKeyboardPopup != null &&
-                tkKeyboardPopup.isShowing()) {
+        if (tkKeyboardPopup != null) {
             tkKeyboardPopup.dismiss();
         }
         tkKeyboardPopup = null;

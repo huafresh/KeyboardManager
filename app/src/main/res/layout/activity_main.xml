@@ -47,7 +47,7 @@
         android:layout_height="60dp"
         android:hint="自绘键盘 - 框架 - ios随机数字"
         app:keyboard_theme_id="@id/keyboard_type_ios_digital_random"
-        />
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btn_login"

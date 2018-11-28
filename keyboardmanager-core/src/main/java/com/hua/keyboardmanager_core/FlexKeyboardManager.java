@@ -29,9 +29,20 @@ public final class FlexKeyboardManager {
     }
 
     static {
+        //FlexKeyboardManager处理的ThemeId映射为框架键盘类型。
         themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_english, KeyboardManager.KEYBOARD_TYPE_ENGLISH);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_stock, KeyboardManager.KEYBOARD_TYPE_STOCK);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_digital, KeyboardManager.KEYBOARD_TYPE_DIGITAL);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_random_digital, KeyboardManager.KEYBOARD_TYPE_RANDOM_DIGITAL);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_random_common, KeyboardManager.KEYBOARD_TYPE_RANDOM_COMMON);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_merchandise, KeyboardManager.KEYBOARD_TYPE_MERCHANDISE);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_common, KeyboardManager.KEYBOARD_TYPE_COMMON);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_third_board, KeyboardManager.KEYBOARD_TYPE_THIRD_BOARD);
         themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_ios_digital, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL);
         themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_ios_digital_random, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL_RANDOM);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_ios_alphabet, KeyboardManager.KEYBOARD_TYPE_IOS_ALPHABET);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_ios_sign_digital, KeyboardManager.KEYBOARD_TYPE_IOS_SIGN_DIGITAL);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_ios_sign, KeyboardManager.KEYBOARD_TYPE_IOS_SIGN);
     }
 
     private FlexKeyboardManager() {
