@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewParent;
 
+import com.android.thinkive.framework.util.ScreenUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,7 +87,11 @@ public class ScrollAdjustHelper {
             scrollContainerWithOffset(offset);
         }
 
-        private void scrollContainerWithOffset(final int offset) {
+        private void scrollContainerWithOffset(int offset) {
+
+            //多偏移一定距离，使控件完全可见。
+            final int finalOffset = insertPadding(offset);
+
             if (scrollAnimator == null) {
                 scrollAnimator = new ValueAnimator();
                 scrollAnimator.setDuration(SCROLL_DURATION);
@@ -98,7 +104,7 @@ public class ScrollAdjustHelper {
             scrollAnimator.removeAllUpdateListeners();
 
             tempScrollBy = 0;
-            scrollAnimator.setIntValues(0, offset);
+            scrollAnimator.setIntValues(0, finalOffset);
             scrollAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
@@ -114,6 +120,15 @@ public class ScrollAdjustHelper {
                 }
             });
             scrollAnimator.start();
+        }
+
+        private static int insertPadding(int offset) {
+            if (offset > 0) {
+                return offset + 10;
+            } else if (offset < 0) {
+                return offset - 10;
+            }
+            return offset;
         }
 
         public void reset() {
