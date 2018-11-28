@@ -24,11 +24,20 @@ class TkKeyboardPopup_new {
     }
 
     void show(short keyboardType, final View visibleView) {
-        if (curKeyboardManager != null && curKeyboardManager.isShowing()) {
-            curKeyboardManager.dismiss();
-        }
         View focusView = activity.getWindow().getCurrentFocus();
         if (focusView instanceof EditText) {
+            if (curKeyboardManager != null) {
+                if (curKeyboardManager.keyboardType == keyboardType &&
+                        curKeyboardManager.editText.equals(focusView) &&
+                        curKeyboardManager.visibleView.equals(visibleView)) {
+                    if (!curKeyboardManager.isShowing()) {
+                        curKeyboardManager.show();
+                    }
+                    return;
+                } else {
+                    curKeyboardManager.dismiss();
+                }
+            }
             curKeyboardManager = new TkKeyboardManagerWrap(activity,
                     (EditText) focusView, keyboardType, visibleView);
             curKeyboardManager.show();
@@ -41,12 +50,14 @@ class TkKeyboardPopup_new {
         }
     }
 
-     boolean isShowing() {
+    boolean isShowing() {
         return curKeyboardManager != null && curKeyboardManager.isShowing();
     }
 
     private static class TkKeyboardManagerWrap extends KeyboardManager {
         private Context context;
+        private short keyboardType;
+        private EditText editText;
         private View visibleView;
         private int keyboardHeight;
 
@@ -56,6 +67,8 @@ class TkKeyboardPopup_new {
                               View visibleView) {
             super(context, editText, keyboardType);
             this.context = context;
+            this.keyboardType = keyboardType;
+            this.editText = editText;
             this.visibleView = visibleView;
             this.setKeyboardVisibleListener(new KeyboardVisibleListener() {
                 @Override
