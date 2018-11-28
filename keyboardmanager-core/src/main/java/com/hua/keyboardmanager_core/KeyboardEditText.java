@@ -7,7 +7,6 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -49,7 +48,7 @@ public class KeyboardEditText extends AppCompatEditText
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.KeyboardEditText);
         this.keyboardType = ta.getInt(R.styleable.KeyboardEditText_keyboard_type, KEYBOARD_TYPE_CUSTOM);
         this.keyboardThemeId = ta.getResourceId(
-                R.styleable.KeyboardEditText_keyboard_theme_id, R.id.tk_keyboard_theme_english);
+                R.styleable.KeyboardEditText_keyboard_theme_id, R.id.keyboard_type_english);
         this.visibleViewId = ta.getResourceId(R.styleable.KeyboardEditText_keyboard_visible_view, 0);
         ta.recycle();
 

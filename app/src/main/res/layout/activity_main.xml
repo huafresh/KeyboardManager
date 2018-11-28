@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:hint="自绘键盘 - 自定义"
-        app:keyboard_theme_id="@id/keyboard_theme_simple"
+        app:keyboard_theme_id="@id/keyboard_type_custom_demo"
         />
 
     <com.hua.keyboardmanager_core.KeyboardEditText
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:hint="自绘键盘 - 自定义 - buton可见"
-        app:keyboard_theme_id="@id/keyboard_theme_simple"
+        app:keyboard_theme_id="@id/keyboard_type_custom_demo"
         app:keyboard_visible_view="@+id/btn_login"
         />
 
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:hint="自绘键盘 - 框架 - ios随机数字"
-        app:keyboard_theme_id="@id/tk_keyboard_theme_ios_digital_random"
+        app:keyboard_theme_id="@id/keyboard_type_ios_digital_random"
         />
 
     <Button

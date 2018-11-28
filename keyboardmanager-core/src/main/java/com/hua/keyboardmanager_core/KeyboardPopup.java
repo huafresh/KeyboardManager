@@ -52,7 +52,7 @@ class KeyboardPopup extends PopupWindow {
         View keyboardView = keyboardViews.get(themeId);
         if (keyboardView == null) {
             FrameLayout container = new FrameLayout(activity);
-            IKeyboardTheme iKeyboardTheme = FlexKeyboardManager.keyboardThemes.get(themeId);
+            IKeyboardTheme iKeyboardTheme = FlexKeyboardManager.customKeyboardThemes.get(themeId);
             if (iKeyboardTheme != null) {
                 View view = iKeyboardTheme.onCreateKeyboardView(activity,
                         LayoutInflater.from(activity), container);
@@ -66,7 +66,7 @@ class KeyboardPopup extends PopupWindow {
     void show(final View visibleView) {
         this.visibleView = visibleView;
         showAtLocation(activity.getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
-        IKeyboardTheme keyboardTheme = FlexKeyboardManager.keyboardThemes.get(themeId);
+        IKeyboardTheme keyboardTheme = FlexKeyboardManager.customKeyboardThemes.get(themeId);
         View focus = activity.getWindow().getCurrentFocus();
         if (keyboardTheme != null && focus != null) {
             keyboardTheme.onBindInputTarget(focus);

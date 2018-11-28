@@ -8,6 +8,8 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.android.thinkive.framework.keyboard.KeyboardManager;
+
 /**
  * @author hua
  * @version V1.0
@@ -18,11 +20,18 @@ public final class FlexKeyboardManager {
 
     private IKeyboardPanel keyboardPanel;
     private IKeyboardPanel tkKeyboardPanel;
-    static SparseArray<IKeyboardTheme> keyboardThemes = new SparseArray<>();
-    private static final int DEFAULT_THEME_ID = R.id.tk_keyboard_theme_english;
+    static SparseArray<IKeyboardTheme> customKeyboardThemes = new SparseArray<>();
+    public static SparseArray<Short> themeIdTkKeyboardTypeMap = new SparseArray<>();
+    private static final int DEFAULT_THEME_ID = R.id.keyboard_type_english;
 
     static {
-        keyboardThemes.put(R.id.keyboard_theme_simple, new SimpleKeyboardTheme());
+        customKeyboardThemes.put(R.id.keyboard_type_custom_demo, new SimpleKeyboardTheme());
+    }
+
+    static {
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_english, KeyboardManager.KEYBOARD_TYPE_ENGLISH);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_ios_digital, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL);
+        themeIdTkKeyboardTypeMap.put(R.id.keyboard_type_ios_digital_random, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL_RANDOM);
     }
 
     private FlexKeyboardManager() {
@@ -105,6 +114,6 @@ public final class FlexKeyboardManager {
     }
 
     public static void registerKeyboardTheme(IKeyboardTheme theme) {
-        keyboardThemes.put(theme.themeId(), theme);
+        customKeyboardThemes.put(theme.themeId(), theme);
     }
 }

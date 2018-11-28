@@ -15,27 +15,19 @@ import com.android.thinkive.framework.keyboard.KeyboardManager;
 class TkKeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.LifecycleListener {
     private TkKeyboardPopup tkKeyboardPopup;
 
-    private static SparseArray<Short> keyboardTypes = new SparseArray<>();
-
-    static {
-        keyboardTypes.put(R.id.tk_keyboard_theme_english, KeyboardManager.KEYBOARD_TYPE_ENGLISH);
-        keyboardTypes.put(R.id.tk_keyboard_theme_ios_digital, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL);
-        keyboardTypes.put(R.id.tk_keyboard_theme_ios_digital_random, KeyboardManager.KEYBOARD_TYPE_IOS_DIGITAL_RANDOM);
-    }
-
     TkKeyboardPanelImpl() {
 
     }
 
     @Override
     public boolean support(int themeId) {
-        return keyboardTypes.get(themeId, (short) 0) != 0;
+        return FlexKeyboardManager.themeIdTkKeyboardTypeMap.get(themeId, (short) 0) != 0;
     }
 
     @Override
     public void show(final Activity activity, int themeId, final View visibleView) {
         tkKeyboardPopup = TkKeyboardPopup.create(activity,
-                translateKeyboardType(themeId), visibleView);
+                FlexKeyboardManager.themeIdTkKeyboardTypeMap.get(themeId), visibleView);
         if (tkKeyboardPopup != null) {
             tkKeyboardPopup.show();
             ActivityCallbackHelper.doOnActivityDestroyed(activity, this);
@@ -52,13 +44,6 @@ class TkKeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.Life
     @Override
     public boolean isShowing() {
         return tkKeyboardPopup != null && tkKeyboardPopup.isShowing();
-    }
-
-    private static short translateKeyboardType(int themeId) {
-        if (R.id.tk_keyboard_theme_english == themeId) {
-            return KeyboardManager.KEYBOARD_TYPE_ENGLISH;
-        }
-        return KeyboardManager.KEYBOARD_TYPE_ENGLISH;
     }
 
     @Override

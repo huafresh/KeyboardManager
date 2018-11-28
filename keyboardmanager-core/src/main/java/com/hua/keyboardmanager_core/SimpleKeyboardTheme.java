@@ -23,7 +23,7 @@ public class SimpleKeyboardTheme implements IKeyboardTheme {
 
     @Override
     public int themeId() {
-        return R.id.keyboard_theme_simple;
+        return R.id.keyboard_type_custom_demo;
     }
 
     @Override

@@ -17,7 +17,7 @@ class KeyboardPanelImpl implements IKeyboardPanel, ActivityCallbackHelper.Lifecy
 
     @Override
     public boolean support(int themeId) {
-        return FlexKeyboardManager.keyboardThemes.get(themeId) != null;
+        return FlexKeyboardManager.customKeyboardThemes.get(themeId) != null;
     }
 
     @Override

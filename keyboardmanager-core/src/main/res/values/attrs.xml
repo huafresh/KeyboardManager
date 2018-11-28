@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="keyboard_theme_simple" type="id"/>
-    <item name="tk_keyboard_theme_english" type="id"/>
-    <item name="tk_keyboard_theme_ios_digital" type="id"/>
-    <item name="tk_keyboard_theme_ios_digital_random" type="id"/>
+    <item name="keyboard_type_custom_demo" type="id"/>
+
+    <item name="keyboard_type_english" type="id"/>
+    <item name="keyboard_type_stock" type="id"/>
+    <item name="keyboard_type_digital" type="id"/>
+    <item name="keyboard_type_random_digital" type="id"/>
+    <item name="keyboard_type_random_common" type="id"/>
+    <item name="keyboard_type_merchandise" type="id"/>
+    <item name="keyboard_type_common" type="id"/>
+    <item name="keyboard_type_third_board" type="id"/>
+    <item name="keyboard_type_ios_digital" type="id"/>
+    <item name="keyboard_type_ios_digital_random" type="id"/>
+    <item name="keyboard_type_ios_alphabet" type="id"/>
+    <item name="keyboard_type_ios_sign_digital" type="id"/>
+    <item name="keyboard_type_ios_sign" type="id"/>
 
     <declare-styleable name="KeyboardEditText">
         <attr name="keyboard_type" format="enum">
