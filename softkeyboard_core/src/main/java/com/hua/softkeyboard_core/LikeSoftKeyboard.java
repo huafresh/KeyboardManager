@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import java.lang.ref.WeakReference;
 
 /**
- * 弹出时会保证指定的TargetView是可见的，等同于系统键盘弹出时把EditText往上顶的效果。
+ * 模仿系统键盘，在弹出的时候会把TargetView往上顶。
  *
  * @author zhangsh
  * @version V1.0

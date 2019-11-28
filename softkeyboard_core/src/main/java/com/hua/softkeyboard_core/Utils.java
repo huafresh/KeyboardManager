@@ -24,5 +24,4 @@ class Utils {
         return location[1] + view.getHeight();
     }
 
-
 }
