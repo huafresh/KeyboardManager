@@ -7,47 +7,47 @@
     android:orientation="vertical"
     tools:context="com.hua.keyboardmanager.MainActivity">
 
-    <com.hua.keyboardmanager_core.KeyboardEditText
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="使用系统键盘"
-        app:keyboard_type="keyboard_type_system"/>
+    <!--<com.hua.keyboardmanager_core.KeyboardEditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:hint="使用系统键盘"-->
+        <!--app:keyboard_type="keyboard_type_system"/>-->
 
-    <com.hua.keyboardmanager_core.KeyboardEditText
-        android:id="@+id/edt_2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="自绘键盘 - 框架"
-        />
+    <!--<com.hua.keyboardmanager_core.KeyboardEditText-->
+        <!--android:id="@+id/edt_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:hint="自绘键盘 - 框架"-->
+        <!--/>-->
 
-    <com.hua.keyboardmanager_core.KeyboardEditText
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="自绘键盘 - 自定义"
-        app:keyboard_theme_id="@id/keyboard_type_custom_demo"
-        />
+    <!--<com.hua.keyboardmanager_core.KeyboardEditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:hint="自绘键盘 - 自定义"-->
+        <!--app:keyboard_theme_id="@id/keyboard_type_custom_demo"-->
+        <!--/>-->
 
-    <com.hua.keyboardmanager_core.KeyboardEditText
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="自绘键盘 - 框架 - buton可见"
-        app:keyboard_visible_view="@+id/btn_login"
-        />
+    <!--<com.hua.keyboardmanager_core.KeyboardEditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:hint="自绘键盘 - 框架 - buton可见"-->
+        <!--app:keyboard_visible_view="@+id/btn_login"-->
+        <!--/>-->
 
-    <com.hua.keyboardmanager_core.KeyboardEditText
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="自绘键盘 - 自定义 - buton可见"
-        app:keyboard_theme_id="@id/keyboard_type_custom_demo"
-        app:keyboard_visible_view="@+id/btn_login"
-        />
+    <!--<com.hua.keyboardmanager_core.KeyboardEditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:hint="自绘键盘 - 自定义 - buton可见"-->
+        <!--app:keyboard_theme_id="@id/keyboard_type_custom_demo"-->
+        <!--app:keyboard_visible_view="@+id/btn_login"-->
+        <!--/>-->
 
-    <com.hua.keyboardmanager_core.KeyboardEditText
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="自绘键盘 - 框架 - ios随机数字"
-        app:keyboard_theme_id="@id/keyboard_type_ios_digital_random"
-        android:visibility="gone"/>
+    <!--<com.hua.keyboardmanager_core.KeyboardEditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:hint="自绘键盘 - 框架 - ios随机数字"-->
+        <!--app:keyboard_theme_id="@id/keyboard_type_ios_digital_random"-->
+        <!--android:visibility="gone"/>-->
 
     <Button
         android:id="@+id/btn_login"
@@ -55,5 +55,6 @@
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="550dp"
         android:text="登录"/>
 </LinearLayout>
