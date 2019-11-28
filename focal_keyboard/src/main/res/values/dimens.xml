@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ChatBottomBar -->
+    <dimen name="lcim_bottom_bar_height">56dp</dimen>
+    <dimen name="lcim_bottom_bar_button_size">30dp</dimen>
+    <dimen name="lcim_bottom_bar_button_margin">5dp</dimen>
+    <dimen name="lcim_bottom_bar_action_layout_height">250dp</dimen>
+    <dimen name="lcim_bottom_bar_action_layout_height2">150dp</dimen>
+
+</resources>

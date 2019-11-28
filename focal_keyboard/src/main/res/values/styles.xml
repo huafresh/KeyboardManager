@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="lcim_input_bar_button_style">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="lcim_input_bar_edittext_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">40dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:maxLines">4</item>
+        <!--<item name="android:hint">@string/lcim_edit_hint_text</item>-->
+        <item name="android:textColorHint">#DDDDDD</item>
+        <item name="android:background">@drawable/lcim_textview_bg</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:textCursorDrawable">@drawable/edit_text_cursor</item>
+    </style>
+
+</resources>

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/KeyboardManager.iml" filepath="$PROJECT_DIR$/KeyboardManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/focal_keyboard/focal_keyboard.iml" filepath="$PROJECT_DIR$/focal_keyboard/focal_keyboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" filepath="$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" filepath="$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/softkeyboard_core/softkeyboard_core.iml" filepath="$PROJECT_DIR$/softkeyboard_core/softkeyboard_core.iml" />

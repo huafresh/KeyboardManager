@@ -1,1 +1,1 @@
-include ':app', ':keyboardmanager-core', ':softkeyboard_core'
+include ':app', ':keyboardmanager-core', ':softkeyboard_core', ':focal_keyboard'

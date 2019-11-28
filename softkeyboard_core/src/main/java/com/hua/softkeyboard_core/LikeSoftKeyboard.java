@@ -81,7 +81,7 @@ public class LikeSoftKeyboard {
     private static class LikeSoftKeyboardPopup extends PopupWindow {
         private View mVisibleView;
         private int mTotalScrollY;
-        private static final int SCROLL_DURATION = 150;
+        private static final int SCROLL_DURATION = 2000;
         private ValueAnimator scrollAnimator;
         private int tempScrollBy;
         private View mDecorView;
@@ -92,7 +92,7 @@ public class LikeSoftKeyboard {
             setBackgroundDrawable(new ColorDrawable(0));
             setWidth(-1);
             setHeight(-2);
-            setAnimationStyle(-1);
+            setAnimationStyle(R.style.LiveSoftKeyboard_Animation);
         }
 
         private void show(View visibleView) {
