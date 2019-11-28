@@ -3,7 +3,8 @@ package com.hua.keyboardmanager_core;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
-import android.support.v4.util.ArraySet;
+
+import androidx.collection.ArraySet;
 
 import java.util.ArrayList;
 import java.util.HashMap;

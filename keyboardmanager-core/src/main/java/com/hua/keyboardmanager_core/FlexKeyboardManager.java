@@ -3,10 +3,11 @@ package com.hua.keyboardmanager_core;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.annotation.IdRes;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.annotation.IdRes;
 
 import com.android.thinkive.framework.keyboard.KeyboardManager;
 

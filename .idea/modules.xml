@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KeyboardManager.iml" filepath="$PROJECT_DIR$/KeyboardManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KeyboardManager.iml" filepath="$PROJECT_DIR$/KeyboardManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" filepath="$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" filepath="$PROJECT_DIR$/keyboardmanager-core/keyboardmanager-core.iml" />
     </modules>
   </component>

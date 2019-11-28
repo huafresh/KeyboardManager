@@ -3,9 +3,10 @@ package com.hua.keyboardmanager_core;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.annotation.Nullable;
 
 import com.android.thinkive.framework.keyboard.KeyboardManager;
 import com.android.thinkive.framework.util.ScreenUtil;
