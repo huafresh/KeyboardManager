@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hua.softkeyboard_like.ForbiddenAutoSoftInputEditText;
 import com.hua.softkeyboard_like.OnSoftKeyboardLikeDismissListener;
 import com.hua.softkeyboard_like.SoftKeyboardLike;
 
@@ -34,51 +36,20 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         final EditText editText1 = findViewById(R.id.edit1);
-        final EditText editText2 = findViewById(R.id.edit2);
+        final ForbiddenAutoSoftInputEditText editText2 = findViewById(R.id.edit2);
 
-        editText2.requestFocus();
+        // editText2.requestFocus();
 
+        editText2.setOnShowSoftInputListener(new ForbiddenAutoSoftInputEditText.OnShowSoftInputListener() {
+            @Override
+            public void onShowSoftInput(ForbiddenAutoSoftInputEditText editText) {
+                Log.d("@@@hua", "show softinput");
+            }
+        });
         findViewById(R.id.btn_login2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LCIMSoftInputUtils.hideSoftInput(MainActivity.this, editText1);
-                SoftKeyboardLike.show(v, 0, 200);
-            }
-        });
-
-        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (SoftKeyboardLike.isShowing()) {
-                    SoftKeyboardLike.dismiss(new OnSoftKeyboardLikeDismissListener() {
-                        @Override
-                        public void onDismiss() {
-                            LCIMSoftInputUtils.showSoftInput(MainActivity.this, editText2);
-                        }
-                    });
-                } else {
-                    LCIMSoftInputUtils.hideSoftInput(MainActivity.this, editText2);
-                    SoftKeyboardLike.show(v, 0,200);
-                }
-            }
-        });
-
-        editText2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        findViewById(R.id.view).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SoftKeyboardLike.dismiss(new OnSoftKeyboardLikeDismissListener() {
-                    @Override
-                    public void onDismiss() {
-                        LCIMSoftInputUtils.showSoftInput(MainActivity.this, editText2);
-                    }
-                });
+                editText2.requestFocus();
             }
         });
     }

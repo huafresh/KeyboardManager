@@ -83,19 +83,9 @@
             android:src="@drawable/ic_more_actions"
             />
 
-        <FrameLayout
+        <com.hua.softkeyboard_like.ForbiddenAutoSoftInputEditText
+            android:id="@+id/edit2"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <EditText
-                android:id="@+id/edit2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <View
-                android:layout_width="match_parent"
-                android:id="@+id/view"
-                android:layout_height="match_parent" />
-        </FrameLayout>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
