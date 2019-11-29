@@ -2,8 +2,8 @@
 <resources>
 
     <style name="LiveSoftKeyboard_Animation" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/popup_enter</item>
-        <item name="android:windowExitAnimation">@anim/popup_out</item>
+        <item name="android:windowEnterAnimation">@anim/softkeyboard_like_popup_enter</item>
+        <item name="android:windowExitAnimation">@anim/softkeyboard_like_popup_out</item>
     </style>
 
 </resources>
