@@ -1,4 +1,4 @@
-package com.hua.softkeyboard_core;
+package com.hua.softkeyboard_like;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

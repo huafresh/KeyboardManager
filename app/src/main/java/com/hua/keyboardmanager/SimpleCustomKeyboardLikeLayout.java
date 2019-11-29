@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hua.softkeyboard_core.ILikeSoftKeyboardTheme;
-import com.hua.softkeyboard_core.LikeSoftKeyboard;
+import com.hua.softkeyboard_like.ISoftKeyboardLikeLayoutTheme;
+import com.hua.softkeyboard_like.SoftKeyboardLike;
 
 /**
  * @author zhangsh
@@ -14,9 +14,9 @@ import com.hua.softkeyboard_core.LikeSoftKeyboard;
  * @date 2019-11-28 14:30
  */
 
-public class SimpleCustomKeyboard implements ILikeSoftKeyboardTheme {
+public class SimpleCustomKeyboardLikeLayout implements ISoftKeyboardLikeLayoutTheme {
     @Override
-    public int themeId() {
+    public int layoutThemeId() {
         return 0;
     }
 
@@ -26,6 +26,6 @@ public class SimpleCustomKeyboard implements ILikeSoftKeyboardTheme {
     }
 
     public static void register(){
-        LikeSoftKeyboard.registerTheme(new SimpleCustomKeyboard());
+        SoftKeyboardLike.registerTheme(new SimpleCustomKeyboardLikeLayout());
     }
 }

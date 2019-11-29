@@ -43,5 +43,5 @@ dependencies {
     // implementation(name: 'thinkive-framework-1.7.5.2', ext: 'aar')
 
     // implementation project(':keyboardmanager-core')
-    implementation project(':softkeyboard_core')
+    implementation project(':softkeyboard_like')
 }

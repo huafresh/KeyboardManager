@@ -1,4 +1,4 @@
-package com.hua.softkeyboard_core;
+package com.hua.softkeyboard_like;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,9 +11,9 @@ import android.view.ViewGroup;
  * @date 2019-11-28 11:01
  */
 
-public interface ILikeSoftKeyboardTheme {
+public interface ISoftKeyboardLikeLayoutTheme {
 
-    int themeId();
+    int layoutThemeId();
 
     /**
      * 请注意不要保存返回的View为成员变量。

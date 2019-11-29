@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -12,12 +11,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hua.softkeyboard_core.LikeSoftKeyboard;
+import com.hua.softkeyboard_like.OnSoftKeyboardLikeDismissListener;
+import com.hua.softkeyboard_like.SoftKeyboardLike;
 
 public class MainActivity extends AppCompatActivity {
 
     static {
-        SimpleCustomKeyboard.register();
+        SimpleCustomKeyboardLikeLayout.register();
     }
 
     @Override
@@ -42,24 +42,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LCIMSoftInputUtils.hideSoftInput(MainActivity.this, editText1);
-                LikeSoftKeyboard.show(v, 0);
+                SoftKeyboardLike.show(v, 0, 200);
             }
         });
 
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (LikeSoftKeyboard.isShowing()) {
-                    LikeSoftKeyboard.dismiss();
-                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                if (SoftKeyboardLike.isShowing()) {
+                    SoftKeyboardLike.dismiss(new OnSoftKeyboardLikeDismissListener() {
                         @Override
-                        public void run() {
+                        public void onDismiss() {
                             LCIMSoftInputUtils.showSoftInput(MainActivity.this, editText2);
                         }
-                    }, 350);
+                    });
                 } else {
                     LCIMSoftInputUtils.hideSoftInput(MainActivity.this, editText2);
-                    LikeSoftKeyboard.show(v, 0);
+                    SoftKeyboardLike.show(v, 0,200);
                 }
             }
         });
@@ -74,16 +73,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (LikeSoftKeyboard.isShowing()) {
-                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            LCIMSoftInputUtils.showSoftInput(MainActivity.this, editText2);
-                        }
-                    }, 350);
-                } else {
-                    LCIMSoftInputUtils.showSoftInput(MainActivity.this, editText2);
-                }
+                SoftKeyboardLike.dismiss(new OnSoftKeyboardLikeDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        LCIMSoftInputUtils.showSoftInput(MainActivity.this, editText2);
+                    }
+                });
             }
         });
     }
